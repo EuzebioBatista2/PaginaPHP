@@ -1,0 +1,134 @@
+/* Estrutura */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/cadastro.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+* {
+    font-family: "Roboto";
+    box-sizing: border-box;   
+}
+
+:root {
+    --var-cinza: #808080;
+    --var-blue: #407bff;
+    --var-white: #ffffff;
+    --var-black: #1b1a1a;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px 80px;
+}
+
+.content-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40rem;
+}
+
+.content-register h1 {
+    font-size: 4rem;
+    margin: 10px 0;
+    color: var(--var-blue);
+    
+}
+
+.content-register form {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid var(--var-cinza);
+    border-radius: 20px;
+    background-color: var(--var-white);
+    box-shadow: -4px 7px 23px 0px rgba(0,0,0,0.75);
+}
+
+.content-register label {
+    font-size: 1.5rem;
+    color: var(--var-cinza);
+}
+
+.content-register input {
+    font-size: 2rem;
+    border: 0;
+    border-bottom: 2px solid var(--var-cinza);
+    margin: 5px 0;
+    line-height: 3.5rem;
+    outline: none;
+    width: 100%;
+}
+
+.content-register form .terms {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.content-register form .terms input[type="checkbox"] {
+    margin-right: 5px;
+    width: 10%;
+}
+
+.content-register form .terms label {
+    color: var(--var-black);
+}
+
+.content-register button {
+    border: 0;
+    border-radius: 5px;
+    width: 100%;
+    background-color: var(--var-blue);
+    font-size: 2rem;
+    padding: 8px;
+    color: var(--var-white);
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.content-register button:hover {
+    background-color: var(--var-black);
+}
+
+.content-register h3 {
+    font-size: 1.5rem;
+    color: var(--var-black);
+    background-color: var(--var-white);
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-weight: 100;
+
+}
+
+.content-register h3 a {
+    font-weight: bold;
+    color: var(--var-blue);
+}
+
+.content-register h3 a:hover {
+    color: var(--var-black);
+    text-decoration: none;
+}
+
+.content-register .error {
+    height: 20%;
+}

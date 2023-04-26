@@ -127,7 +127,7 @@ body {
     font-size: 4.0rem;
 }
 
-.content-login .advice {
+.content-login .adviceErr {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -136,13 +136,29 @@ body {
     background-color: #fff;
 }
 
-.content-login .advice h3 {
+.content-login .adviceErr h3 {
     font-size: 1.5rem;
     color: var(--var-cinza);
     font-weight: 100;
-    margin: 0;
-    margin-top: 5px;
+    margin: 5px 0;
 }
+
+.content-login .adviceSuc {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    border-left: 4px solid green;
+    background-color: #fff;
+}
+
+.content-login .adviceSuc h3 {
+    font-size: 1.5rem;
+    color: var(--var-cinza);
+    font-weight: 100;
+    margin: 5px 0;
+}
+
 
 .content-login h2 {
     font-weight: 500;

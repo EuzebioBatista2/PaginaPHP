@@ -1,11 +1,33 @@
 <?php
-$contaErrada = false;
-$emailErrPadrao = false;
-$senhaErrPadrao = false;
+$verificador = true;
+$messegesErros = "";
+$messegesSucess = "";
+// Deu certo cadastro?
+if(!isset($_SESSION)) {
+    session_start();
+    if (isset($_SESSION['usuario'])) {
+        $messegesSucess = "<h3><strong>AVISO: </strong>Cadastro realizado com sucesso</h3>";
+    }
+    session_destroy();
+}
+
 if(isset($_POST['email'])){
+        
         include('./php/conexao.php');
         $email = $_POST['email'];
         $senha = $_POST['senha'];
+
+        // Consulta tamanho 
+        if (strlen($email) < 10 || strlen($email) > 100) {
+            $messegesErros .= "<h3>O email deve conter entre 10 a 100 caracteres.</h3>";
+            $verificador = false;
+        }
+
+        if (strlen($senha) < 6 || strlen($senha) > 16) {
+            $messegesErros .= "<h3>A senha deve conter entre 6 a 16 caracteres.</h3>";
+            $verificador = false;
+        }
+        // Fim consulta do tamanho
 
         // Consulta de email e senha existente 
         $sql_consult = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha' LIMIT 1";
@@ -14,20 +36,18 @@ if(isset($_POST['email'])){
         if ($sql_exec->num_rows != 0) {
             $usuario = $sql_exec->fetch_assoc();
         } else {
-            $contaErrada = true;
+            $messegesErros .= "<h3><strong>ERRO: </strong>Email ou senha incorreto(s).</h3>";
+            $verificador = false;
         }
         // Fim consulta de email e senha existente
 
-
-        // Consulta tamanho 
-        if (strlen($email) < 10 || strlen($email) > 100) {
-            $emailErrPadrao = true;
+        if ($verificador) {
+            session_start();
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['sobrenome'] = $usuario['sobrenome'];
+            $_SESSION['email'] = $usuario['email'];
+            header("location: ./php/client.php");
         }
-
-        if (strlen($senha) < 6 || strlen($senha) > 16) {
-            $senhaErrPadrao = true;
-        }
-        // Fim consulta do tamanho
     }
 
 ?>
@@ -49,19 +69,13 @@ if(isset($_POST['email'])){
         </div>
         <div class="content-login">
             <?php
-                $listaErros = "<div class='advice'>";
-                if($contaErrada) {
-                    $listaErros .= "<h3><strong>ERRO: </strong>Email ou senha incorreto(s).</h3>";
+                if($messegesErros != "") {
+                    echo "<div class='adviceErr'>" . $messegesErros . "</div>";
+                } 
+
+                if($messegesSucess != "") {
+                    echo "<div class='adviceSuc'>" . $messegesSucess . "</div>";
                 }
-                if($emailErrPadrao) {
-                    $listaErros .= "<h3><strong>ERRO: </strong>Email fora do padrão: min: 30, max:100 carac.</h3>";
-                }
-                if($senhaErrPadrao) {
-                    $listaErros .= "<h3><strong>ERRO: </strong>Senha fora do padrão: min: 6, max:16 carac.</h3>";
-                }
-                if(isset($_POST['email'])) {
-                    echo $listaErros . "</div>";
-                };
             ?>
             
             <h1>Faça o login</h1>
@@ -77,7 +91,7 @@ if(isset($_POST['email'])){
                 <button type="submit">Login</button>
             </form>
             <h2>Esqueceu sua <a href="#">Senha?</a></h2>
-            <h2>Não tem conta? <a href="#">Criar</a></h2>
+            <h2>Não tem conta? <a href="./php/cadastro.php">Criar</a></h2>
         </div>
     </div>
 
