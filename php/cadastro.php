@@ -10,7 +10,7 @@
             $messegeErros .= "<h3>O nome do usuário não deve conter números</h3>";
             $verificador = false;
         } elseif (empty($_POST['nome'])) {
-            $messegeErros .= "<h3>Esse campo(Nome) deve ser preenchido.</h3>";
+            $messegeErros .= "<h3>Campo Nome deve ser preenchido.</h3>";
             $verificador = false;
         } else { 
             $usuario = $_POST['nome'];
@@ -22,7 +22,7 @@
             $messegeErros .= "<h3>O sobrenome do usuário não deve conter números</h3>";
             $verificador = false;
         } elseif (empty($_POST['sobrenome'])) {
-            $messegeErros .= "<h3>Esse campo(Sobrenome) deve ser preenchido.</h3>";
+            $messegeErros .= "<h3>Campo Sobrenome deve ser preenchido.</h3>";
             $verificador = false;
         } else { 
             $sobrenome = $_POST['nome'];
@@ -92,19 +92,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="content-image">
-
-        </div>
         <div class="content-register">
+            <h1>Cadastro de usuários</h1>
             <?php
                 if($messegeErros != "") {
-                    echo "<div class='advice'>" . $messegeErros . "</div>";
+                    echo "<div class='adviceErr'>" . $messegeErros . "</div>";
                 }
             ?>
-            <h1>Cadastro de usuários</h1>
-            <div class="error">
-                <h2>error</h2>
-            </div>
             <form action="" method="post">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome'] ?>">
@@ -120,7 +114,8 @@
                 </div>
                 <button type="submit">Cadastrar</button>
             </form>
-            <h3>Já possui um cadastro? Realize um <a href="../index.php">login</a></h3>
+            
+            <h4>Já possui um cadastro? Realize um <a href="../index.php">login</a></h4>
         </div>
     </div>
 </body>

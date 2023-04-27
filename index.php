@@ -30,14 +30,17 @@ if(isset($_POST['email'])){
         // Fim consulta do tamanho
 
         // Consulta de email e senha existente 
-        $sql_consult = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha' LIMIT 1";
+        $sql_consult = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
         $sql_exec = $mysqli->query($sql_consult) or die($mysqli->error);
-
-        if ($sql_exec->num_rows != 0) {
-            $usuario = $sql_exec->fetch_assoc();
-        } else {
+        if ($sql_exec->num_rows == 0) {
             $messegesErros .= "<h3><strong>ERRO: </strong>Email ou senha incorreto(s).</h3>";
             $verificador = false;
+        } else {
+            $usuario = $sql_exec->fetch_assoc();
+            if(!password_verify($senha, $usuario['senha'])) {
+                $messegesErros .= "<h3><strong>ERRO: </strong>Email ou senha incorreto(s).</h3>";
+                $verificador = false;
+            }
         }
         // Fim consulta de email e senha existente
 
@@ -46,7 +49,7 @@ if(isset($_POST['email'])){
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['sobrenome'] = $usuario['sobrenome'];
             $_SESSION['email'] = $usuario['email'];
-            header("location: ./php/client.php");
+            header("location: ./php/cliente.php");
         }
     }
 
