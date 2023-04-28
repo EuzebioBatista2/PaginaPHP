@@ -2,7 +2,7 @@
     if(!isset($_SESSION)) {
         session_start();
         $usuario = $_SESSION['nome'];
-        $sobrenome = $_SESSION['sobrenome'];
+        $perfil = $_SESSION['perfil'];
         $email = $_SESSION['email'];
     }
 ?>
@@ -23,7 +23,11 @@
                 <img src="../images/bxl-php.svg" width="60px" height="60px">
                 <?php 
                     if(isset($_SESSION['nome']) != null) {
-                        echo "<h1> Seja bem-vindo(a): " . $usuario . "</h1>"; 
+                        echo "<div class='perfil'><img src='" . $perfil . "'/></div>";
+                        echo "<div class='dados'>
+                                <h1> Usuário: " . $usuario . "</h1> 
+                                <h2> Email: " . $email . "</h2>
+                              </div>";
                     }
                     else { 
                         header('location: ../index.php');

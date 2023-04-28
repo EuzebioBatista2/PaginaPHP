@@ -42,7 +42,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 40rem;
+    height: 50%;
 }
 
 .content-register h1 {
@@ -65,12 +67,12 @@ body {
 }
 
 .content-register label {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--var-cinza);
 }
 
 .content-register input {
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: 0;
     border-bottom: 2px solid var(--var-cinza);
     margin: 5px 0;
@@ -100,7 +102,7 @@ body {
     border-radius: 5px;
     width: 100%;
     background-color: var(--var-blue);
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 8px;
     color: var(--var-white);
     margin: 1rem 0;
@@ -114,22 +116,24 @@ body {
 .content-register .adviceErr {
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    height: 50%;
+    padding: 2px;
+    margin: 3px 0;
     border-left: 4px solid red;
     background-color: #fff;
 }
 
 .content-register .adviceErr h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--var-cinza);
     font-weight: 100;
     margin: 5px 0;
 }
 
 .content-register h4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--var-black);
     background-color: var(--var-white);
     border-radius: 5px;
@@ -137,7 +141,7 @@ body {
     text-align: center;
     padding: 5px;
     font-weight: 100;
-    margin: 5px 0;
+    margin: 3px 0;
 
 }
 
@@ -156,8 +160,30 @@ body {
         padding: 1.2rem;
     }
 
-    .content-register h1 {
-        font-size: 3.0rem;
+    .content-register {
+        height: 100%;
     }
+
+    .content-register h1 {
+        font-size: 2.0rem;
+        height: 5%;
+    }
+
+    .content-register .adviceErr {
+        height: 25%;
+    }
+
+    .content-register form {
+        height: 65%;
+    }
+
+    .content-register h4 {
+        height: 5%;
+    }
+
+    .content-register input {
+        line-height: 2.9rem;
+    }
+
 }
 

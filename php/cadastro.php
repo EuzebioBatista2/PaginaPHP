@@ -1,7 +1,12 @@
 <?php 
+    
     $verificador = true;
     $messegeErros = "";
     if(isset($_POST['nome'])){
+
+        // if(isset($_FILES)) {
+        //     var_dump($_FILES['perfil']);
+        // }
 
         include('./conexao.php');
 
@@ -59,6 +64,29 @@
         }
         // Fim verificação Senha
 
+        // Verificação de imagem
+        if ($_FILES['perfil']['name'] == "") {
+            $messegeErros .= "<h3>Para realizar o cadastro, é necessario inserir uma imagem de perfil.</h3>";
+            $verificador = false;
+        } else {
+            $perfil = $_FILES['perfil'];
+            if($perfil['size'] > 2097152) {
+                $messegeErros .= "<h3>Arquivo acima do limite permitido, MAX 4MB.</h3>";
+                $verificador = false;
+            } else {
+                $folder = "../imagesPerfil/";
+                $novoNomeArquivo = uniqid();
+                $extensao = strtolower(pathinfo($perfil['name'], PATHINFO_EXTENSION));
+                if($extensao != "png" && $extensao != "jpg" && $extensao != "jpeg") {
+                    $messegeErros .= "<h3>Tipo de arquivo invalido</h3>";
+                    $verificador = false;
+                } else {
+                    $path = $folder . $novoNomeArquivo . "." . $extensao;
+                }
+            }
+        }
+        // Fim verificação imagem
+
         // Verificação Termo
         if(!isset($_POST['termo'])) {
             $messegeErros .= "<h3>Para realizar o cadastro, deve-se aceitar os termos.</h3>";
@@ -67,8 +95,9 @@
         // Fim verificação Termo
 
         if($verificador) {
-            $cadastro = "INSERT INTO usuarios (nome, sobrenome, email, senha) 
-            VALUES ('$usuario','$sobrenome', '$email', '$senhaCript')";
+            move_uploaded_file($perfil['tmp_name'], $path);
+            $cadastro = "INSERT INTO usuarios (nome, sobrenome, email, senha, path) 
+            VALUES ('$usuario','$sobrenome', '$email', '$senhaCript', '$path')";
             $mysqli->query($cadastro) or die($mysqli->error);
             session_start();
             $_SESSION['usuario'] = $_POST['nome'];
@@ -99,7 +128,7 @@
                     echo "<div class='adviceErr'>" . $messegeErros . "</div>";
                 }
             ?>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome'] ?>">
                 <label for="sobrenome">Sobrenome</label>
@@ -108,6 +137,8 @@
                 <input type="text" name="email" id="email" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>">
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" id="senha">
+                <label for="perfil">Foto de perfil</label>
+                <input type="file" name="perfil" id="perfil">
                 <div class="terms">
                     <input type="checkbox" name="termo" id="termo">
                     <label for="termo">Termos de cadastro</label>

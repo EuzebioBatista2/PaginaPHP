@@ -38,16 +38,53 @@ body {
 .container .welcome {
     display: flex;
     align-items: center;
+    border-radius: 50px;
+    border: 2px solid var(--var-black);
+    background-color: var(--var-SoftWhite);
+    padding: 5px 40px;
 }
 
 .welcome img {
-    margin: 0px 40px;
+    margin: 0px 5px;
 }
 
-.container h1 {
+.welcome .perfil {
+    height: 7rem;
+    width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid var(--var-black);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.welcome .perfil img {
+    display: flex;
+    height: 100%;
+    width: 100%;
     margin: 0;
-    color: var(--var-white);
-    font-size: 3rem;
+}
+
+.welcome .dados {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    justify-content: center;
+}
+
+.welcome .dados h2 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--var-cinza);
+}
+
+.welcome .dados h1 {
+    margin: 0;
+    color: var(--var-black);
+    font-size: 2.5rem;
     font-weight: 500;
 }
 
@@ -244,6 +281,7 @@ body {
 .pageThird h3 {
     padding: 10px 20px;
     text-align: center;
+    width: 100%;
     color: var(--var-cinza);
     background-color: var(--var-SoftWhite);
     margin: 0;
@@ -387,4 +425,59 @@ body {
 .footer-content span::before {
     content: "\00A9";
     margin-right: 5px;
+}
+
+@media (max-width: 960px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .container .welcome {
+        flex-direction: column;
+        padding: 20px 30px;
+        margin-bottom: 5px;
+    }
+
+    .pages {
+        flex-direction: column;
+        width: 90%;
+    }
+    .pages .pageSecondary {
+        width: 100%;
+    }
+
+    .pages .pagePrincipal {
+        width: 100%;
+    }
+
+    .pages .pageThird {
+        width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-content .links {
+        justify-content: center;
+        width: 100%;
+        height: 40%;
+        padding: 5px 100px;
+    }
+
+    .footer-content .mark {
+        width: 100%;
+        justify-content: center;
+        height: 50%;
+        padding: 5px 100px;
+    }
+
+    .footer-content .rights {
+        padding: 10px;
+        width: 100%;
+        height: 10%;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
 }

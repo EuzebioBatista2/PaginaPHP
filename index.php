@@ -47,8 +47,8 @@ if(isset($_POST['email'])){
         if ($verificador) {
             session_start();
             $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['sobrenome'] = $usuario['sobrenome'];
             $_SESSION['email'] = $usuario['email'];
+            $_SESSION['perfil'] = $usuario['path'];
             header("location: ./php/cliente.php");
         }
     }
