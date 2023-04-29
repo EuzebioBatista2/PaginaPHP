@@ -7,6 +7,8 @@ if(!isset($_SESSION)) {
     session_start();
     if (isset($_SESSION['usuario'])) {
         $messegesSucess = "<h3><strong>AVISO: </strong>Cadastro realizado com sucesso</h3>";
+    } elseif(isset($_SESSION['email'])) {
+        $messegesSucess = "<h3><strong>AVISO: </strong>Senha alterada com sucesso.</h3>";
     }
     session_destroy();
 }
@@ -93,7 +95,7 @@ if(isset($_POST['email'])){
                 </div>
                 <button type="submit">Login</button>
             </form>
-            <h2>Esqueceu sua <a href="#">Senha?</a></h2>
+            <h2>Esqueceu sua <a href="./php/esqueciSenha.php">Senha?</a></h2>
             <h2>Não tem conta? <a href="./php/cadastro.php">Criar</a></h2>
         </div>
     </div>
