@@ -41,3 +41,7 @@ O projeto realiza um sistema de login completo, onde o usuário tem todas as op�
     * ADD: Inserindo página login
 * 0.0.1
     * START: Projeto iniciado(Iniciando estrutura).
+
+Euzebio Batista [@Linkedin](https://www.linkedin.com/in/euzebio-batista) - euzebio.batista2@gmail.com
+
+Criado por Euzebio Batista.
